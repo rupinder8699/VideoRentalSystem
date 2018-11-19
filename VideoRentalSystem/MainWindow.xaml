@@ -1,0 +1,24 @@
+﻿<Window x:Class="VideoRentalSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoRentalSystem"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="Header_label" Content="Welcome to the Video Rental System" HorizontalAlignment="Left" Margin="69,26,0,0" VerticalAlignment="Top" Width="687" FontSize="36" Height="82" FontFamily="Segoe Print" Foreground="#FF1239EA" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.097"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Button x:Name="Registration_button" Content="Registration" HorizontalAlignment="Left" Margin="98,302,0,0" VerticalAlignment="Top" Width="140" Height="49" FontFamily="Segoe Print" FontSize="20" Background="#FFEAAB03" Click="Registration_Button_Click"/>
+        <Button x:Name="Login_Button" Content="Login" HorizontalAlignment="Left" Margin="551,302,0,0" VerticalAlignment="Top" Width="138" Height="49" FontFamily="Segoe Print" FontSize="20" Background="#FFF5421B" Foreground="#FFFBF8F8" Click="Login_Button_Click"/>
+
+    </Grid>
+</Window>
