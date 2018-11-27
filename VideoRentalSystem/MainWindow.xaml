@@ -17,8 +17,8 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Button x:Name="Registration_button" Content="Registration" HorizontalAlignment="Left" Margin="98,302,0,0" VerticalAlignment="Top" Width="140" Height="49" FontFamily="Segoe Print" FontSize="20" Background="#FFEAAB03" Click="Registration_Button_Click"/>
-        <Button x:Name="Login_Button" Content="Login" HorizontalAlignment="Left" Margin="551,302,0,0" VerticalAlignment="Top" Width="138" Height="49" FontFamily="Segoe Print" FontSize="20" Background="#FFF5421B" Foreground="#FFFBF8F8" Click="Login_Button_Click"/>
+        <Button x:Name="Registration_button" Content="Registration" HorizontalAlignment="Left" Margin="98,302,0,0" VerticalAlignment="Top" Width="140" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFEAAB03" Click="Registration_Button_Click"/>
+        <Button x:Name="Login_Button" Content="Login" HorizontalAlignment="Left" Margin="551,302,0,0" VerticalAlignment="Top" Width="138" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFF5421B" Foreground="#FFFBF8F8" Click="Login_Button_Click"/>
 
     </Grid>
 </Window>

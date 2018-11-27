@@ -5,14 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoRentalSystem"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
-    <Grid>
+        Title="Login" Height="600" Width="700">
+    <Grid RenderTransformOrigin="0.97,0.069">
         <Label Content="Login Your Account" HorizontalAlignment="Left" Margin="269,23,0,0" VerticalAlignment="Top" Width="363" FontSize="36" FontFamily="Times New Roman" Height="70" Foreground="#FF0936B0"/>
         <Label Content="UserName" HorizontalAlignment="Left" Margin="145,139,0,0" VerticalAlignment="Top" Width="154" FontSize="22" Foreground="#FFF0680A" Height="35"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="145,211,0,0" VerticalAlignment="Top" Width="101" FontSize="22" Height="39" Foreground="#FF08A416"/>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="311,318,0,0" VerticalAlignment="Top" Width="126" Click="Button_Click" Height="44" Background="#FFEC0909" Foreground="#FFF7F1F1" FontSize="22" FontFamily="Segoe Print"/>
+        <Button x:Name="Login_btn" Content="Login" HorizontalAlignment="Left" Margin="293,366,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click" Height="44" Background="#FFEC0909" Foreground="#FFF7F1F1" FontSize="22" FontFamily="Times New Roman"/>
         <TextBox x:Name="TxtUserName" HorizontalAlignment="Left" Height="35" Margin="350,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216"/>
         <TextBox x:Name="TxtPassword" HorizontalAlignment="Left" Height="39" Margin="350,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216"/>
+        <Label x:Name="Registration_lbl" Content="Click don't have account" HorizontalAlignment="Left" Margin="168,473,0,0" VerticalAlignment="Top" Width="192" FontFamily="Sitka Heading" FontSize="18" Background="#FFFBFBFB" Foreground="#FF1734EC" Height="46"/>
+        <Button x:Name="Register_btn" Content="Register" HorizontalAlignment="Left" Margin="391,465,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click" Height="41" Background="#FF091EEC" Foreground="#FFF7F1F1" FontSize="16" FontFamily="Times New Roman"/>
 
     </Grid>
 </Window>

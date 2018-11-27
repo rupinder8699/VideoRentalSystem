@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoRentalSystem"
         mc:Ignorable="d"
-        Title="Registration" Height="450" Width="800">
+        Title="Registration" Height="600" Width="700">
     <Grid Margin="0,0,-8,1" RenderTransformOrigin="0.968,0.901">
         <Label x:Name="UserName_label" Content="UserName" HorizontalAlignment="Left" Margin="117,75,0,0" VerticalAlignment="Top" Width="113" FontSize="22" Foreground="#FFF02C0D"/>
         <Label x:Name="Password_label" Content="Password" HorizontalAlignment="Left" Margin="117,150,0,0" VerticalAlignment="Top" FontSize="22" Width="113" Foreground="#FF3DD311"/>
@@ -16,8 +16,10 @@
         <TextBox x:Name="Password_textbox" HorizontalAlignment="Left" Height="39" Margin="345,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" FontSize="22"/>
         <TextBox x:Name="Age_textbox" HorizontalAlignment="Left" Height="37" Margin="409,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" FontSize="22" RenderTransformOrigin="0.474,0.854"/>
         <TextBox x:Name="FullName_textbox" HorizontalAlignment="Left" Height="35" Margin="345,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" FontSize="22"/>
-        <Button x:Name="Submit_button" Content="Submit" HorizontalAlignment="Left" Margin="345,354,0,0" VerticalAlignment="Top" Width="120" Click="Submit_Button_Click" FontSize="22" Height="41" Background="#FFF30C0C" Foreground="#FFF9F4F4"/>
+        <Button x:Name="Submit_button" Content="Submit" HorizontalAlignment="Left" Margin="288,380,0,0" VerticalAlignment="Top" Width="94" Click="Submit_Button_Click" FontSize="22" Height="42" Background="#FFF30C0C" Foreground="#FFF9F4F4" FontFamily="Times New Roman"/>
         <Label x:Name="Header_label" Content="Register  For Login" HorizontalAlignment="Left" Margin="252,10,0,0" VerticalAlignment="Top" Width="354" FontSize="36" FontFamily="Times New Roman" Height="60" Foreground="#FF141BB0"/>
+        <Label x:Name="Login_lbl" Content="Click for login" HorizontalAlignment="Left" Margin="187,478,0,0" VerticalAlignment="Top" Width="117" Foreground="#FF1313F3" FontSize="18" FontFamily="Sitka Heading" Height="43"/>
+        <Button x:Name="Login_button" Content="Login" HorizontalAlignment="Left" Margin="345,469,0,0" VerticalAlignment="Top" Width="87" Click="Submit_Button_Click" FontSize="16" Height="37" Background="#FF0C0CF3" Foreground="#FFF9F4F4" FontFamily="Times New Roman"/>
 
     </Grid>
 </Window>

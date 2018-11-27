@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoRentalSystem"
         mc:Ignorable="d"
-        Title="VideoRental" Height="550" Width="900">
+        Title="VideoRental" Height="600" Width="1000">
     <Grid Background="#FF9A999C">
         <TabControl HorizontalAlignment="Left" Height="205" Margin="0,0,0,0" VerticalAlignment="Top" Width="370" >
-            <TabItem Header="Customer" FontSize="18" FontFamily="Segoe Print" Margin="0,0,0,0" Width="125">
+            <TabItem Header="Customer" FontSize="18" FontFamily="Segoe Print" Margin="0,0,0,0" Width="125" Loaded="Tab_Cust_Loaded">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
@@ -16,11 +16,11 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <Grid Background="#FF78776D" Margin="0,0,0,-3">
-                    <DataGrid Name="CustomerData" HorizontalAlignment="Left" Height="164" VerticalAlignment="Top" Width="360"/>
+                    <DataGrid Name="CustomerData" HorizontalAlignment="Left" Height="164" VerticalAlignment="Top" Width="360" FontSize="12" FontFamily="Times New Roman" MouseDoubleClick="SelectCustDataRow"/>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Video" FontSize="18" FontFamily="Segoe Print" Margin="0,0,0,0" Width="120" >
+            <TabItem Header="Video" FontSize="18" FontFamily="Segoe Print" Margin="0,0,0,0" Width="120" Loaded="Tab_Movi_Loaded" >
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
@@ -31,7 +31,7 @@
                     <DataGrid Name="VideoData" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="360"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Rental" FontSize="18" FontFamily="Segoe Print" Margin="0,0,0,0" Width="120" >
+            <TabItem Header="Rental" FontSize="18" FontFamily="Segoe Print" Margin="0,0,0,0" Width="120" Loaded="Tab_Rent_Loaded" >
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0.004"/>
@@ -57,26 +57,26 @@
         <TextBox x:Name="Address_TxtBox" HorizontalAlignment="Left" Height="25" Margin="150,362,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="18"  Width="120"/>
         <TextBox x:Name="Phone_TxtBox" HorizontalAlignment="Left" Height="25" Margin="150,402,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="18"  Width="120"/>
 
-        <Button x:Name="Add_Customer_Btn" Content="ADD" HorizontalAlignment="Left" Margin="308,285,0,0" VerticalAlignment="Top" Width="70" Background="#FF3209EC" Foreground="#FFF9F5F5" Height="30" FontSize="18"/>
-        <Button x:Name="Update_Customer_Btn" Content="UPDATE" HorizontalAlignment="Left" Margin="300,340,0,0" VerticalAlignment="Top" Width="94" FontSize="18" Height="30" Background="#FF3EF508"/>
-        <Button x:Name="Delete_Customer_Btn" Content="DELETE" HorizontalAlignment="Left" Margin="300,395,0,0" VerticalAlignment="Top" Width="92" FontSize="18" Height="30" Background="#FFF93F08" Foreground="#FFF3E9E9"/>
+        <Button x:Name="Add_Customer_Btn" Content="ADD" HorizontalAlignment="Left" Margin="308,285,0,0" VerticalAlignment="Top" Width="70" Background="#FF3209EC" Foreground="#FFF9F5F5" Height="30" FontSize="18" Click="Add_Cust_Btn_Click"/>
+        <Button x:Name="Update_Customer_Btn" Content="UPDATE" HorizontalAlignment="Left" Margin="300,340,0,0" VerticalAlignment="Top" Width="94" FontSize="18" Height="30" Background="#FF3EF508" Click="Update_Cust_Btn_Click"/>
+        <Button x:Name="Delete_Customer_Btn" Content="DELETE" HorizontalAlignment="Left" Margin="300,395,0,0" VerticalAlignment="Top" Width="92" FontSize="18" Height="30" Background="#FFF93F08" Foreground="#FFF3E9E9" Click="Delete_Cust_Btn_Click"/>
 
-        <Label Content="Rental Detail" Margin="425,310,0,0" FontFamily="Times New Roman" FontSize="20" Width="415" Background="#FFF9790E" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Rental Detail" Margin="470,340,0,0" FontFamily="Times New Roman" FontSize="20" Width="429" Background="#FFF9790E" HorizontalAlignment="Left" VerticalAlignment="Top" Height="36"/>
 
 
-        <Label x:Name="MovieID_lbl" Content="Movie ID" HorizontalAlignment="Left" Margin="425,360,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman"/>
-        <Label x:Name="CustomerID_lbl" Content="Customer ID" HorizontalAlignment="Left" Margin="425,400,0,0" VerticalAlignment="Top" FontSize="16"  FontFamily="Times New Roman"/>
-        <Label x:Name="Date_Rented_lbl" Content="Date Rented" HorizontalAlignment="Left" Margin="425,440,0,0" VerticalAlignment="Top" FontSize="16"  FontFamily="Times New Roman"/>
-        <Label x:Name="Date_Returned_lbl" Content="Date Returned" HorizontalAlignment="Left" Margin="425,480,0,0" VerticalAlignment="Top" FontSize="16"  FontFamily="Times New Roman"/>
+        <Label x:Name="MovieID_lbl" Content="Movie ID" HorizontalAlignment="Left" Margin="470,400,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman"/>
+        <Label x:Name="CustomerID_lbl" Content="Customer ID" HorizontalAlignment="Left" Margin="470,440,0,0" VerticalAlignment="Top" FontSize="16"  FontFamily="Times New Roman"/>
+        <Label x:Name="Date_Rented_lbl" Content="Date Rented" HorizontalAlignment="Left" Margin="470,480,0,0" VerticalAlignment="Top" FontSize="16"  FontFamily="Times New Roman"/>
+        <Label x:Name="Date_Returned_lbl" Content="Date Returned" HorizontalAlignment="Left" Margin="470,520,0,0" VerticalAlignment="Top" FontSize="16"  FontFamily="Times New Roman"/>
 
-        <TextBox x:Name="MovieID_Txtbox" HorizontalAlignment="Left" Height="25" Margin="570,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
-        <TextBox x:Name="CustomerID_Txtbox" HorizontalAlignment="Left" Height="25" Margin="570,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
-        <TextBox x:Name="DateRented_Txtbox" HorizontalAlignment="Left" Height="25" Margin="570,440,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
-        <TextBox x:Name="DateReturned_Txtbox" HorizontalAlignment="Left" Height="25" Margin="570,480,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
+        <TextBox x:Name="MovieID_Txtbox" HorizontalAlignment="Left" Height="25" Margin="615,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
+        <TextBox x:Name="CustomerID_Txtbox" HorizontalAlignment="Left" Height="25" Margin="615,440,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
+        <TextBox x:Name="DateRented_Txtbox" HorizontalAlignment="Left" Height="25" Margin="615,480,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
+        <TextBox x:Name="DateReturned_Txtbox" HorizontalAlignment="Left" Height="25" Margin="615,520,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
 
-        <Button x:Name="Add_Rent_Btn" Content="ADD" HorizontalAlignment="Left" Margin="770,360,0,0" VerticalAlignment="Top" Width="70"  Height="30" FontSize="20" Background="#FF1212EA" Foreground="#FFFBF7F7" Click="Add_Rent_Btn_Click"/>
-        <Button x:Name="Update_Rent_Btn" Content="UPDATE" HorizontalAlignment="Left" Margin="761,415,0,0" VerticalAlignment="Top" Width="94"  Height="30" FontSize="20" Background="#FF12EC26"  Click="Update_Rent_Btn_Click"/>
-        <Button x:Name="Delete_Rent_Btn" Content="DELETE" HorizontalAlignment="Left" Margin="761,470,0,0" VerticalAlignment="Top" Width="94"  Height="30" FontSize="20" Background="#FFF7400B" Foreground="#FFFFFDFD"  Click="Delete_Rent_Btn_Click"/>
+        <Button x:Name="Add_Rent_Btn" Content="ADD" HorizontalAlignment="Left" Margin="815,400,0,0" VerticalAlignment="Top" Width="70"  Height="30" FontSize="20" Background="#FF1212EA" Foreground="#FFFBF7F7" Click="Add_Rent_Btn_Click"/>
+        <Button x:Name="Update_Rent_Btn" Content="UPDATE" HorizontalAlignment="Left" Margin="805,460,0,0" VerticalAlignment="Top" Width="94"  Height="30" FontSize="20" Background="#FF12EC26"  Click="Update_Rent_Btn_Click"/>
+        <Button x:Name="Delete_Rent_Btn" Content="DELETE" HorizontalAlignment="Left" Margin="805,520,0,0" VerticalAlignment="Top" Width="94"  Height="30" FontSize="20" Background="#FFF7400B" Foreground="#FFFFFDFD"  Click="Delete_Rent_Btn_Click"/>
 
 
         <Label Content="Movie Detail" HorizontalAlignment="Left" Margin="425,7,0,0" VerticalAlignment="Top" Width="415" FontSize="20" FontFamily="Times New Roman" Background="#FFF5D231"/>
