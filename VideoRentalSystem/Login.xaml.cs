@@ -28,7 +28,7 @@ namespace VideoRentalSystem
         }
 
      
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
             
                 SqlConnection SqlConn = new SqlConnection("Data Source = DESKTOP-QULTHGL\\SQLEXPRESS; Initial Catalog=VideoRentalDB; Integrated Security=True");
@@ -100,6 +100,12 @@ namespace VideoRentalSystem
 
 
 
+        }
+
+        private void Register_Button_Click(object sender, RoutedEventArgs e)
+        {
+            (new Registration()).Show();
+            this.Close();
         }
     }
 }

@@ -38,6 +38,11 @@ namespace VideoRentalSystem
             (new Registration()).Show();
             this.Close();
         }
+
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

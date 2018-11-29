@@ -17,8 +17,9 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Button x:Name="Registration_button" Content="Registration" HorizontalAlignment="Left" Margin="98,302,0,0" VerticalAlignment="Top" Width="140" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFEAAB03" Click="Registration_Button_Click"/>
-        <Button x:Name="Login_Button" Content="Login" HorizontalAlignment="Left" Margin="551,302,0,0" VerticalAlignment="Top" Width="138" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFF5421B" Foreground="#FFFBF8F8" Click="Login_Button_Click"/>
+        <Button x:Name="Registration_button" Content="Registration" HorizontalAlignment="Left" Margin="98,300,0,0" VerticalAlignment="Top" Width="140" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFEAAB03" Click="Registration_Button_Click"/>
+        <Button x:Name="Login_Button" Content="Login" HorizontalAlignment="Left" Margin="551,300,0,0" VerticalAlignment="Top" Width="138" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFF5421B" Foreground="#FFFBF8F8" Click="Login_Button_Click"/>
+        <Button x:Name="Exit_Button" Content="Exit" HorizontalAlignment="Left" Margin="684,360,0,0" VerticalAlignment="Top" Width="75" Height="40" FontSize="20" Click="Exit_Button_Click" Background="#FF17ECEC" FontFamily="Algerian"/>
 
     </Grid>
 </Window>

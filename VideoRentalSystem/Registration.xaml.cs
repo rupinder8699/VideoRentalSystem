@@ -41,6 +41,12 @@ namespace VideoRentalSystem
             this.Close();
            
         }
+
+        private void Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+            (new Login()).Show();
+            this.Close();
+        }
     }
 }
 

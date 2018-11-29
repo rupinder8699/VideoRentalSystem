@@ -23,7 +23,7 @@ namespace VideoRentalSystem
         
         DatabaseClass Obj_data = new DatabaseClass();
         public int CustID;
-
+        public int MovieID;
        
         public VideoRental()
         {
@@ -61,6 +61,7 @@ namespace VideoRentalSystem
             if (((FirstName_TxtBox.Text != "") && ((LastName_TxtBox.Text != "") && (Address_TxtBox.Text != ""))) && Phone_TxtBox.Text != "")
             {
                 Obj_data.Add_cust(FirstName_TxtBox.Text, LastName_TxtBox.Text, Address_TxtBox.Text,  Phone_TxtBox.Text);
+                MessageBox.Show("Customer Added");
                 CustomerData.ItemsSource = Obj_data.CustData().DefaultView;
                 FirstName_TxtBox.Text = "";
                 LastName_TxtBox.Text = "";
@@ -84,7 +85,6 @@ namespace VideoRentalSystem
     private void Delete_Cust_Btn_Click(object sender, RoutedEventArgs e)
     {
 
-            int custID = CustID;
             if (MessageBox.Show("Are you sure you want to delete the User?", "User", MessageBoxButton.YesNo).ToString() == "Yes")
             {
                 Obj_data.Delete_cust(CustID);
@@ -100,19 +100,71 @@ namespace VideoRentalSystem
 
 
 
+        private void Tab_Movi_Loaded(object sender, RoutedEventArgs e)
+        {
+            VideoData.ItemsSource = Obj_data.MoviData().DefaultView;
+        }
+
+        private void SelectMoviDataRow(object sender, MouseButtonEventArgs e)
+        {
+            DataRowView view = (DataRowView)VideoData.SelectedItems[0];
+            MovieID = Convert.ToInt32(view["MovieID"]);
+            Rating_TxtBox.Text = Convert.ToString(view["Rating"]);
+            Title_TxtBox.Text = Convert.ToString(view["Title"]);
+            Year_TxtBox.Text = Convert.ToString(view["Year"]);
+            Rental_Cost_TxtBox.Text = Convert.ToString(view["Rental_Cost"]);
+            Copies_TxtBox.Text = Convert.ToString(view["Copies"]);
+            Plot_TxtBox.Text = Convert.ToString(view["Plot"]);
+            Genre_TxtBox.Text = Convert.ToString(view["Genre"]);
+            VideoData.ItemsSource = Obj_data.MoviData().DefaultView;
+        }
 
         private void Add_Movie_Btn_Click(object sender, RoutedEventArgs e)
     {
-
+            if (((Rating_TxtBox.Text != "") && ((Title_TxtBox.Text != "") && (Year_TxtBox.Text != ""))) && (((Rental_Cost_TxtBox.Text != "") && (( Copies_TxtBox.Text !="") && (( Plot_TxtBox.Text !="") && (Genre_TxtBox.Text !=""))))))
+            {
+                Obj_data.Add_movi(Rating_TxtBox.Text, Title_TxtBox.Text, Year_TxtBox.Text, Rental_Cost_TxtBox.Text, Copies_TxtBox.Text, Plot_TxtBox.Text, Genre_TxtBox.Text);
+                MessageBox.Show("Movie Added");
+                VideoData.ItemsSource = Obj_data.MoviData().DefaultView;
+                Rating_TxtBox.Text = "";
+                Title_TxtBox.Text = "";
+                Year_TxtBox.Text = "";
+                Rental_Cost_TxtBox.Text = "";
+                Copies_TxtBox.Text = "";
+                Plot_TxtBox.Text = "";
+                Genre_TxtBox.Text = "";
+            }
         }
 
     private void Update_Movie_Btn_Click(object sender, RoutedEventArgs e)
     {
+            Obj_data.Update_movi(MovieID, Rating_TxtBox.Text, Title_TxtBox.Text, Year_TxtBox.Text, Convert.ToInt32(Rental_Cost_TxtBox.Text), Copies_TxtBox.Text, Plot_TxtBox.Text, Genre_TxtBox.Text);
+            MessageBox.Show("Movie Updated");
+            VideoData.ItemsSource = Obj_data.MoviData().DefaultView;
+            Rating_TxtBox.Text = "";
+            Title_TxtBox.Text = "";
+            Year_TxtBox.Text = "";
+            Rental_Cost_TxtBox.Text = "";
+            Copies_TxtBox.Text = "";
+            Plot_TxtBox.Text = "";
+            Genre_TxtBox.Text = "";
         }
 
     private void Delete_Movie_Btn_Click(object sender, RoutedEventArgs e)
     {
-        
+            if (MessageBox.Show("Are you sure you want to delete the Movie?", "User", MessageBoxButton.YesNo).ToString() == "Yes")
+            {
+                Obj_data.Delete_movi(MovieID);
+                MessageBox.Show("Movie Deleted");
+                VideoData.ItemsSource = Obj_data.MoviData().DefaultView;
+                Rating_TxtBox.Text = "";
+                Title_TxtBox.Text = "";
+                Year_TxtBox.Text = "";
+                Rental_Cost_TxtBox.Text = "";
+                Copies_TxtBox.Text = "";
+                Plot_TxtBox.Text = "";
+                Genre_TxtBox.Text = "";
+            }
 
         }
 
@@ -153,9 +205,6 @@ namespace VideoRentalSystem
 
         }
 
-        private void Tab_Movi_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
     }
 }

@@ -101,13 +101,14 @@ namespace VideoRentalSystem
         {
             try
             {
-                this.Cmdd.Connection = this.Conn;
-                this.Strr = "Delete from Customer where CustID like @CustID";
+                Cmdd.Parameters.Clear();
+                Cmdd.Connection = this.Conn;
+                Strr = "Delete from Customer where CustID like @CustID";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@CustID", CustID) };
-                this.Cmdd.Parameters.Add(parameterArray[0]);
-                this.Cmdd.CommandText = this.Strr;
-                this.Conn.Open();
-                this.Cmdd.ExecuteNonQuery();
+                Cmdd.Parameters.Add(parameterArray[0]);
+                Cmdd.CommandText = Strr;
+                Conn.Open();
+                Cmdd.ExecuteNonQuery();
             }
             catch (Exception exception)
             {
@@ -121,6 +122,122 @@ namespace VideoRentalSystem
                 }
             }
         }
+
+    
+
+public DataTable MoviData()
+{
+    DataTable table = new DataTable();
+    try
+    {
+        this.Cmdd.Connection = this.Conn;
+        this.Strr = "Select * from Movies";
+        this.Cmdd.CommandText = this.Strr;
+        this.Conn.Open();
+        this.SqlReader = this.Cmdd.ExecuteReader();
+        if (this.SqlReader.HasRows)
+        {
+            table.Load(this.SqlReader);
+        }
+        this.Conn.Close();
+        return table;
+    }
+    catch (Exception exception)
+    {
+        MessageBox.Show("Database Exception" + exception.Message);
+        this.Conn.Close();
+        return null;
+    }
+}
+
+public void Add_movi(string Rating_TextBox, string Title_TextBox, string Year_TextBox, string Rental_Cost_TextBox, string Copies_TextBox, string Plot_TextBox, string Genre_TextBox)
+{
+    this.Cmdd.Parameters.Clear();
+    try
+    {
+        this.Cmdd.Parameters.Clear();
+        this.Cmdd.Connection = this.Conn;
+        this.Strr = "Insert into Movies(Rating,Title,Year,Rental_Cost,Copies,Plot,Genre) Values(@Rating, @Title, @Year, @Rental_Cost, @Copies, @Plot, @Genre)";
+        SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@Rating", Rating_TextBox), new SqlParameter("@Title", Title_TextBox), new SqlParameter("@Year", Year_TextBox), new SqlParameter("@Rental_Cost", Rental_Cost_TextBox), new SqlParameter("@Copies", Copies_TextBox), new SqlParameter("@Plot", Plot_TextBox), new SqlParameter("@Genre", Genre_TextBox) };
+        this.Cmdd.Parameters.Add(parameterArray[0]);
+        this.Cmdd.Parameters.Add(parameterArray[1]);
+        this.Cmdd.Parameters.Add(parameterArray[2]);
+        this.Cmdd.Parameters.Add(parameterArray[3]);
+        this.Cmdd.Parameters.Add(parameterArray[4]);
+        this.Cmdd.Parameters.Add(parameterArray[5]);
+        this.Cmdd.Parameters.Add(parameterArray[6]);
+
+        this.Cmdd.CommandText = this.Strr;
+        this.Conn.Open();
+        this.Cmdd.ExecuteNonQuery();
+        this.Conn.Close();
+    }
+    catch (Exception exception)
+    {
+        MessageBox.Show("Database Exception" + exception.Message);
+        this.Conn.Close();
+    }
+}
+
+public void Update_movi(int MovieID, string Rating, string Title, string Year, int Rental_Cost, string Copies, string Plot, string Genre)
+{
+    try
+    {
+        Cmdd.Parameters.Clear();
+        Cmdd.Connection = Conn;
+        Strr = "Update Movies Set Rating= @Rating,Title = @Title, Year = @Year,Rental_Cost = @Rental_Cost,Copies= @Copies,Plot = @Plot, Genre = @Genre where MovieID = @MovieID";
+        SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieID", MovieID), new SqlParameter("@Rating", Rating), new SqlParameter("@Title", Title), new SqlParameter("@Year", Year), new SqlParameter("@Rental_Cost", Rental_Cost), new SqlParameter("@Copies",Copies), new SqlParameter("@Plot", Plot), new SqlParameter("@Genre", Genre) };
+        Cmdd.Parameters.Add(parameterArray[0]);
+        Cmdd.Parameters.Add(parameterArray[1]);
+        Cmdd.Parameters.Add(parameterArray[2]);
+        Cmdd.Parameters.Add(parameterArray[3]);
+        Cmdd.Parameters.Add(parameterArray[4]);
+        Cmdd.Parameters.Add(parameterArray[5]);
+        Cmdd.Parameters.Add(parameterArray[6]);
+        Cmdd.Parameters.Add(parameterArray[7]);
+
+
+                Cmdd.CommandText = Strr;
+        Conn.Open();
+        Cmdd.ExecuteNonQuery();
+    }
+    catch (Exception exception)
+    {
+        MessageBox.Show("Database Exception " + exception.Message);
+    }
+    finally
+    {
+        if (Conn != null)
+        {
+            Conn.Close();
+        }
+    }
+}
+public void Delete_movi(int MovieID)
+{
+    try
+    {
+        Cmdd.Parameters.Clear();
+        Cmdd.Connection = this.Conn;
+        Strr = "Delete from Movies where MovieID like @MovieID";
+        SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieID", MovieID) };
+        Cmdd.Parameters.Add(parameterArray[0]);
+        Cmdd.CommandText = Strr;
+        Conn.Open();
+        Cmdd.ExecuteNonQuery();
+    }
+    catch (Exception exception)
+    {
+        MessageBox.Show("Database Exception" + exception.Message);
+    }
+    finally
+    {
+        if (this.Conn != null)
+        {
+            this.Conn.Close();
+        }
+    }
+}
 
     }
 }

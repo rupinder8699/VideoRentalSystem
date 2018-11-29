@@ -8,7 +8,7 @@
         Title="VideoRental" Height="600" Width="1000">
     <Grid Background="#FF9A999C">
         <TabControl HorizontalAlignment="Left" Height="205" Margin="0,0,0,0" VerticalAlignment="Top" Width="370" >
-            <TabItem Header="Customer" FontSize="18" FontFamily="Segoe Print" Margin="0,0,0,0" Width="125" Loaded="Tab_Cust_Loaded">
+            <TabItem x:Name="Customer_tab" Header="Customer" FontSize="18" FontFamily="Times New Roman" Margin="0,0,0,0" Width="125" Loaded="Tab_Cust_Loaded" Height="35">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
@@ -16,11 +16,11 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <Grid Background="#FF78776D" Margin="0,0,0,-3">
-                    <DataGrid Name="CustomerData" HorizontalAlignment="Left" Height="164" VerticalAlignment="Top" Width="360" FontSize="12" FontFamily="Times New Roman" MouseDoubleClick="SelectCustDataRow"/>
+                    <DataGrid Name="CustomerData" HorizontalAlignment="Left" Height="164" VerticalAlignment="Top" Width="360" FontSize="12" FontFamily="Times New Roman" MouseDoubleClick="SelectCustDataRow" />
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Video" FontSize="18" FontFamily="Segoe Print" Margin="0,0,0,0" Width="120" Loaded="Tab_Movi_Loaded" >
+            <TabItem x:Name="Video_tab" Header="Video" FontFamily="Times New Roman" Margin="0,0,0,0" Width="120" Loaded="Tab_Movi_Loaded" FontSize="18" Height="40" >
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
@@ -28,10 +28,10 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <Grid Background="#FF9EA69E">
-                    <DataGrid Name="VideoData" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="360"/>
+                    <DataGrid Name="VideoData" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="360" MouseDoubleClick="SelectMoviDataRow" ScrollViewer.CanContentScroll="True" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Rental" FontSize="18" FontFamily="Segoe Print" Margin="0,0,0,0" Width="120" Loaded="Tab_Rent_Loaded" >
+            <TabItem x:Name="Rental_tab" Header="Rental" FontSize="18" FontFamily="Times New Roman" Margin="0,0,0,0" Width="120" Loaded="Tab_Rent_Loaded" >
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0.004"/>
@@ -39,7 +39,11 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <Grid Background="#FFB0AFA8" Margin="0,0,0,0">
-                    <DataGrid Name="RentalData" HorizontalAlignment="Left" Height="175" VerticalAlignment="Top" Width="360"  FontFamily="Times New Roman" Margin="0,0,0,-14"  />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="97*"/>
+                        <ColumnDefinition Width="268*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Name="RentalData" HorizontalAlignment="Left" Height="175" VerticalAlignment="Top" Width="360"  FontFamily="Times New Roman" Margin="0,0,0,-3" Grid.ColumnSpan="2"  />
                 </Grid>
             </TabItem>
         </TabControl>
@@ -74,12 +78,12 @@
         <TextBox x:Name="DateRented_Txtbox" HorizontalAlignment="Left" Height="25" Margin="615,480,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
         <TextBox x:Name="DateReturned_Txtbox" HorizontalAlignment="Left" Height="25" Margin="615,520,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  FontSize="16"/>
 
-        <Button x:Name="Add_Rent_Btn" Content="ADD" HorizontalAlignment="Left" Margin="815,400,0,0" VerticalAlignment="Top" Width="70"  Height="30" FontSize="20" Background="#FF1212EA" Foreground="#FFFBF7F7" Click="Add_Rent_Btn_Click"/>
-        <Button x:Name="Update_Rent_Btn" Content="UPDATE" HorizontalAlignment="Left" Margin="805,460,0,0" VerticalAlignment="Top" Width="94"  Height="30" FontSize="20" Background="#FF12EC26"  Click="Update_Rent_Btn_Click"/>
+        <Button x:Name="Add_Rent_Btn" Content="Issue" HorizontalAlignment="Left" Margin="815,400,0,0" VerticalAlignment="Top" Width="70"  Height="30" FontSize="20" Background="#FF1212EA" Foreground="#FFFBF7F7" Click="Add_Rent_Btn_Click"/>
+        <Button x:Name="Update_Rent_Btn" Content="Return" HorizontalAlignment="Left" Margin="805,460,0,0" VerticalAlignment="Top" Width="94"  Height="30" FontSize="20" Background="#FF12EC26"  Click="Update_Rent_Btn_Click"/>
         <Button x:Name="Delete_Rent_Btn" Content="DELETE" HorizontalAlignment="Left" Margin="805,520,0,0" VerticalAlignment="Top" Width="94"  Height="30" FontSize="20" Background="#FFF7400B" Foreground="#FFFFFDFD"  Click="Delete_Rent_Btn_Click"/>
 
 
-        <Label Content="Movie Detail" HorizontalAlignment="Left" Margin="425,7,0,0" VerticalAlignment="Top" Width="415" FontSize="20" FontFamily="Times New Roman" Background="#FFF5D231"/>
+        <Label Content="Movie Detail" HorizontalAlignment="Left" Margin="425,7,0,0" VerticalAlignment="Top" Width="415" FontSize="20" FontFamily="Times New Roman" Background="#FFF5D231"  />
 
         <Label x:Name="Rating_lbl" Content="Rating" HorizontalAlignment="Left" Margin="425,50,0,0" VerticalAlignment="Top" FontSize="16"  Width="89"  FontFamily="Times New Roman" />
         <Label x:Name="Title_lbl" Content="Title" HorizontalAlignment="Left" Margin="425,85,0,0" VerticalAlignment="Top"  FontSize="16" Width="89"  FontFamily="Times New Roman"/>
@@ -89,13 +93,13 @@
         <Label x:Name="Plot_lbl" Content="Plot" HorizontalAlignment="Left" Margin="425,225,0,0" VerticalAlignment="Top" FontSize="16"  FontFamily="Times New Roman"/>
         <Label x:Name="Genre_lbl" Content="Genre" HorizontalAlignment="Left" Margin="425,260,0,0" VerticalAlignment="Top" FontSize="16"  FontFamily="Times New Roman"/>
 
-        <TextBox x:Name="Rating_Txtbox" HorizontalAlignment="Left" Height="25" Margin="570,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120" />
-        <TextBox x:Name="Title_Txtbox"  HorizontalAlignment="Left" Height="25" Margin="570,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
-        <TextBox x:Name="Year_Txtbox" HorizontalAlignment="Left" Height="25" Margin="570,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
-        <TextBox x:Name="Rental_Cost_Txtbox" HorizontalAlignment="Left" Height="25" Margin="570,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
-        <TextBox x:Name="Copies_Txtbox" HorizontalAlignment="Left" Height="25" Margin="570,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
-        <TextBox x:Name="Plot_Txtbox" HorizontalAlignment="Left" Height="25" Margin="570,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
-        <TextBox x:Name="Genre_Txtbox"  HorizontalAlignment="Left" Height="25" Margin="570,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
+        <TextBox x:Name="Rating_TxtBox" HorizontalAlignment="Left" Height="25" Margin="570,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120" />
+        <TextBox x:Name="Title_TxtBox"  HorizontalAlignment="Left" Height="25" Margin="570,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
+        <TextBox x:Name="Year_TxtBox" HorizontalAlignment="Left" Height="25" Margin="570,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
+        <TextBox x:Name="Rental_Cost_TxtBox" HorizontalAlignment="Left" Height="25" Margin="570,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
+        <TextBox x:Name="Copies_TxtBox" HorizontalAlignment="Left" Height="25" Margin="570,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
+        <TextBox x:Name="Plot_TxtBox" HorizontalAlignment="Left" Height="25" Margin="570,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
+        <TextBox x:Name="Genre_TxtBox"  HorizontalAlignment="Left" Height="25" Margin="570,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontSize="18" Width="120"/>
 
         <Button x:Name="Add_Movie_Btn" Content="ADD" HorizontalAlignment="Left" Margin="770,70,0,0" VerticalAlignment="Top" Width="70" Height="30" FontSize="20" Background="#FF1145F7" Foreground="#FFFBF7F7" Click="Add_Movie_Btn_Click" />
         <Button x:Name="Update_Movie_Btn" Content="UPDATE" HorizontalAlignment="Left" Margin="760,130,0,0" VerticalAlignment="Top" Width="94"  Height="30" FontSize="20" Background="#FF1DF708"  Click="Update_Movie_Btn_Click"/>
@@ -103,8 +107,8 @@
 
 
 
-        <Button x:Name="Back_Btn" Content="Back" HorizontalAlignment="Left" Margin="36,474,0,0" VerticalAlignment="Top" Width="60" Height="30" Background="#FFF3800D" FontSize="18" Click="Back_Btn_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="Exit_Btn" Content="Exit" HorizontalAlignment="Left" Margin="310,474,0,0" VerticalAlignment="Top" Width="60" Background="#FFF9230E" Height="30" FontSize="18" Click="Exit_Btn_Click"/>
+        <Button x:Name="Back_Btn" Content="Back" HorizontalAlignment="Left" Margin="36,500,0,0" VerticalAlignment="Top" Width="60" Height="30" Background="#FFF3800D" FontSize="18" Click="Back_Btn_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="Exit_Btn" Content="Exit" HorizontalAlignment="Left" Margin="310,500,0,0" VerticalAlignment="Top" Width="60" Background="#FFF9230E" Height="30" FontSize="18" Click="Exit_Btn_Click"/>
 
 
     </Grid>
