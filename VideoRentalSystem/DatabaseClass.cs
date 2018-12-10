@@ -285,7 +285,7 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Database Exception" + exception.Message);
+                MessageBox.Show("Database Exception " + exception.Message);
                 this.Conn.Close();
                 return null;
             }
@@ -300,7 +300,7 @@ namespace VideoRentalSystem
                 this.Cmdd.Parameters.Clear();
                 this.Cmdd.Connection = this.Conn;
                 this.Strr = "Insert into RentalMovies(MovieIDFK, CustIDFK, DateRented) Values(@MovieIDFK, @CustIDFK, @DateRented)";
-                SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieIDFK", MovieID), new SqlParameter("@CustIDFK", CustID), new SqlParameter("@DateRented", DateRent)};
+                SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieIDFK", MovieID), new SqlParameter("@CustIDFK", CustID), new SqlParameter("@DateRented",DateRent)};
                 this.Cmdd.Parameters.Add(parameterArray[0]);
                 this.Cmdd.Parameters.Add(parameterArray[1]);
                 this.Cmdd.Parameters.Add(parameterArray[2]);
@@ -328,12 +328,68 @@ namespace VideoRentalSystem
 
 
 
- public void Return_Movi(int MovieID)
+    public void Return_Movi(int RMID, int MovieID, DateTime DateRent, DateTime DateReturned, int Copies)
     {
-        
+            try
+            {
+                Cmdd.Parameters.Clear();
+                Cmdd.Connection = Conn;
+                int Total_Rent = 0, Rental_Cost = 0;
+                double days = (DateReturned - DateRent).TotalDays;
+               
+                string Strr1 = "Select Rental_Cost from Movies where MovieID = @MovieIDFK";
+                Cmdd.Parameters.AddWithValue("@MovieIDFK", MovieID);
+
+                Cmdd.CommandText = Strr1;
+                Conn.Open();
+                Rental_Cost = Convert.ToInt32(Cmdd.ExecuteScalar());
+
+                if (Convert.ToInt32(days) == 0)
+                {
+                    Total_Rent = Rental_Cost;
+                }
+                else
+                {
+                    Total_Rent = Rental_Cost*Convert.ToInt32(days);
+                }
+                
+                
+                Strr = "Update RentalMovies Set DateReturned= @DateReurned , Total_Charge = @Total_Charge,Number_Of_Days = @Number_Of_Days,Rent_Per_Day =@Rent_Per_Day where RMID = @RMID";
+                Cmdd.Parameters.AddWithValue("@Total_Charge", Total_Rent);
+                Cmdd.Parameters.AddWithValue("@Number_Of_Days", days);
+                Cmdd.Parameters.AddWithValue("@Rent_Per_Day", Rental_Cost);
+                SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@DateReurned", DateReturned),new SqlParameter("@RMID", RMID)};
+                Cmdd.Parameters.Add(parameterArray[0]);
+                Cmdd.Parameters.Add(parameterArray[1]);
+                             
+                Cmdd.CommandText = Strr;
+                
+                Cmdd.ExecuteNonQuery();
+           
+
+                Strr = "Update Movies set Copies = Copies+1 where MovieID = @MovieIDFK";
+                this.Cmdd.CommandText = this.Strr;
+               
+                this.Cmdd.ExecuteNonQuery();
+               
+
+                MessageBox.Show("Total Rent is " + Total_Rent);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Database Exception " + exception.Message);
+            }
+            finally
+            {
+                if (Conn != null)
+                {
+                    Conn.Close();
+                }
+            }
+
+
+        }
+
 
     }
-
-
-}
 }

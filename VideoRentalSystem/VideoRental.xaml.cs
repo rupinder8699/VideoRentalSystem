@@ -22,14 +22,14 @@ namespace VideoRentalSystem
     {
 
         DatabaseClass Obj_data = new DatabaseClass();
-        public int CustID;
+        public int CustID, RMID;
         public int MovieID, Copies;
 
         public VideoRental()
         {
             this.InitializeComponent();
             base.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            DateRented_Txtbox.Text = DateTime.Now.ToString("dd-MM-yyyy");
+            
         }
 
 
@@ -113,6 +113,7 @@ namespace VideoRentalSystem
             DataRowView view = (DataRowView)VideoData.SelectedItems[0];
             MovieID = Convert.ToInt32(view["MovieID"]);
             Copies = Convert.ToInt32(view["Copies"]);
+           
             MovieID_Txtbox.Text = Convert.ToString(view["MovieID"]);
             Rating_TxtBox.Text = Convert.ToString(view["Rating"]);
             Title_TxtBox.Text = Convert.ToString(view["Title"]);
@@ -120,6 +121,7 @@ namespace VideoRentalSystem
             Copies_TxtBox.Text = Convert.ToString(view["Copies"]);
             Plot_TxtBox.Text = Convert.ToString(view["Plot"]);
             Genre_TxtBox.Text = Convert.ToString(view["Genre"]);
+            DateRented_Txtbox.Text = DateTime.Now.ToString("dd-MM-yyyy");
             VideoData.ItemsSource = Obj_data.MoviData().DefaultView;
         }
 
@@ -182,17 +184,14 @@ namespace VideoRentalSystem
 
         private void SelectRentDataRow(object sender, MouseButtonEventArgs e)
         {
-
             DataRowView view = (DataRowView)RentalData.SelectedItems[0];
-            MovieID = Convert.ToInt32(view["MovieID"]);
-            MovieID_Txtbox.Text = Convert.ToString(view["MovieID"]);
-            CustID = Convert.ToInt32(view["CustID"]);
-            CustomerID_Txtbox.Text = Convert.ToString(view["CustID"]);
+            RMID = Convert.ToInt32(view["RMID"]);
+            MovieID = Convert.ToInt32(view["MovieIDFK"]);
+            MovieID_Txtbox.Text = Convert.ToString(view["MovieIDFK"]);
+            CustomerID_Txtbox.Text = Convert.ToString(view["CustIDFK"]);
             DateRented_Txtbox.Text = Convert.ToString(view["DateRented"]);
-            DateReturned_Txtbox.Text = Convert.ToString(view["DateReturned"]);
             DateReturned_Txtbox.Text = DateTime.Now.ToString("dd-MM-yyyy");
-
-            RentalData.ItemsSource = Obj_data.RentData().DefaultView;
+           RentalData.ItemsSource = Obj_data.RentData().DefaultView;
         }
 
         private void Issue_Rent_Btn_Click(object sender, RoutedEventArgs e)
@@ -218,8 +217,7 @@ namespace VideoRentalSystem
                     LastName_TxtBox.Text = "";
                     Address_TxtBox.Text = "";
                     Phone_TxtBox.Text = "";
-                    DateReturned_Txtbox.Text = "";
-                                  
+                    DateReturned_Txtbox.Text = "";                                  
                 }
             }
             else
@@ -230,7 +228,23 @@ namespace VideoRentalSystem
 
         private void Return_Rent_Btn_Click(object sender, RoutedEventArgs e)
         {
-
+            Obj_data.Return_Movi(RMID,MovieID, Convert.ToDateTime(DateRented_Txtbox.Text), Convert.ToDateTime(DateReturned_Txtbox.Text), Copies);
+            RentalData.ItemsSource = Obj_data.RentData().DefaultView;
+            VideoData.ItemsSource = Obj_data.MoviData().DefaultView;
+            CustomerData.ItemsSource = Obj_data.CustData().DefaultView;
+            MovieID_Txtbox.Text = "";
+            CustomerID_Txtbox.Text = "";
+            Rating_TxtBox.Text = "";
+            Title_TxtBox.Text = "";
+            Year_TxtBox.Text = "";
+            Copies_TxtBox.Text = "";
+            Plot_TxtBox.Text = "";
+            Genre_TxtBox.Text = "";
+            FirstName_TxtBox.Text = "";
+            LastName_TxtBox.Text = "";
+            Address_TxtBox.Text = "";
+            Phone_TxtBox.Text = "";
+            DateReturned_Txtbox.Text = "";
         }
 
 
@@ -238,6 +252,16 @@ namespace VideoRentalSystem
         {
             new MainWindow().Show();
             base.Close();
+        }
+
+        private void TopMovie_Btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BestBuyer_Btn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Exit_Btn_Click(object sender, RoutedEventArgs e)
