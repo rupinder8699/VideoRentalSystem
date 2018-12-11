@@ -29,7 +29,8 @@ namespace VideoRentalSystem
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
-
+        //Submit_Button_Click() used register the new user,*after that (User Registered Successful) message will pop up for successfull registration of the new user.
+        //this form will be closed after clicks ok button on pop up message.
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
         {
            
@@ -42,6 +43,7 @@ namespace VideoRentalSystem
            
         }
 
+        //Login_Button_Click() brings the login form if user already have an account. 
         private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
             (new Login()).Show();

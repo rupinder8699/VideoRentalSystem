@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="#FFDC5A5A" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Label x:Name="Header_label" Content="Welcome to the Video Rental System" HorizontalAlignment="Left" Margin="69,26,0,0" VerticalAlignment="Top" Width="687" FontSize="36" Height="82" FontFamily="Segoe Print" Foreground="#FF1239EA" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
@@ -17,8 +23,8 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Button x:Name="Registration_button" Content="Registration" HorizontalAlignment="Left" Margin="98,300,0,0" VerticalAlignment="Top" Width="140" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFEAAB03" Click="Registration_Button_Click"/>
-        <Button x:Name="Login_Button" Content="Login" HorizontalAlignment="Left" Margin="551,300,0,0" VerticalAlignment="Top" Width="138" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFF5421B" Foreground="#FFFBF8F8" Click="Login_Button_Click"/>
+        <Button x:Name="Registration_button" Content="Registration" HorizontalAlignment="Left" Margin="160,215,0,0" VerticalAlignment="Top" Width="140" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFEAAB03" Click="Registration_Button_Click"/>
+        <Button x:Name="Login_Button" Content="Login" HorizontalAlignment="Left" Margin="480,215,0,0" VerticalAlignment="Top" Width="138" Height="49" FontFamily="Sitka Heading" FontSize="20" Background="#FFF5421B" Foreground="#FFFBF8F8" Click="Login_Button_Click"/>
         <Button x:Name="Exit_Button" Content="Exit" HorizontalAlignment="Left" Margin="684,360,0,0" VerticalAlignment="Top" Width="75" Height="40" FontSize="20" Click="Exit_Button_Click" Background="#FF17ECEC" FontFamily="Algerian"/>
 
     </Grid>

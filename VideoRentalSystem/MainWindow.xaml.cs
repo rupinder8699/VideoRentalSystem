@@ -25,20 +25,22 @@ namespace VideoRentalSystem
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
-
+        //Login_Button_Click() is a login button and it will get login form gor the user.
         private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
             (new Login()).Show();
             this.Close();
         }
 
-        
+        //Registration_Button_Click() is a Register button and it will get registration form gor the new user.
+
         private void Registration_Button_Click(object sender, RoutedEventArgs e)
         {
             (new Registration()).Show();
             this.Close();
         }
 
+        //Exit_Button_Click will help to close the whole program.
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

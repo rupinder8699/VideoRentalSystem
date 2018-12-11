@@ -10,44 +10,47 @@ namespace VideoRentalSystem
 {
     public class Registration_class
     {
+        
+        // Sql database connection link used to showing right in database for storing data.
         SqlConnection Conn_Regis = new SqlConnection("Data Source=DESKTOP-QULTHGL\\SQLEXPRESS;Initial Catalog=VideoRentalDB;Integrated Security=True");
-        SqlCommand cmd_Regis = new SqlCommand();
-        String Query_Regis;
+        SqlCommand Cmdd_Regis = new SqlCommand();
+        String Strr_Regis;
 
-        public void Regis( string UserName, string Password, string FullName, int Age)
+        //Regis() used to instert new user data in database table with the help of insert query 
+        public void Regis(string UserName, string Password, string FullName, int Age)
         {
             try
             {
-                cmd_Regis.Parameters.Clear();
-                cmd_Regis.Connection = Conn_Regis;
+                Cmdd_Regis.Parameters.Clear();
+                Cmdd_Regis.Connection = Conn_Regis;
 
-               
-                Query_Regis = "Insert into UserTable(  UserName, Password, FullName, Age) Values(@UserName, @Password, @FullName, @Age)";
+               //here the insert query inset the new user data to the database table.
+                Strr_Regis = "Insert into UserTable(UserName, Password, FullName, Age) Values(@UserName, @Password, @FullName, @Age)";
 
-               
-                cmd_Regis.Parameters.AddWithValue("@UserName", UserName);
-                cmd_Regis.Parameters.AddWithValue("@Password", Password);
-                cmd_Regis.Parameters.AddWithValue("@FullName", FullName);
-                cmd_Regis.Parameters.AddWithValue("@Age", Age);
+                // below parameters add to command the object
+                Cmdd_Regis.Parameters.AddWithValue("@UserName", UserName);
+                Cmdd_Regis.Parameters.AddWithValue("@Password", Password);
+                Cmdd_Regis.Parameters.AddWithValue("@FullName", FullName);
+                Cmdd_Regis.Parameters.AddWithValue("@Age", Age);
 
-                cmd_Regis.CommandText = Query_Regis;
+                Cmdd_Regis.CommandText = Strr_Regis;
 
-                //connection opened
+                //here connection is opened
                 Conn_Regis.Open();
 
-                //Executed query
-                cmd_Regis.ExecuteNonQuery();
+                //the executed query
+                Cmdd_Regis.ExecuteNonQuery();
                 
             }
             catch (Exception ex)
             {
-                // show error Message
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception" + ex.Message);
                 
             }
             finally
             {
-              // close connection
+                // connection closed here
                 if (Conn_Regis != null)
                 {
                     Conn_Regis.Close();

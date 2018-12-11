@@ -27,31 +27,32 @@ namespace VideoRentalSystem
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
-     
+        //Login_Button_Click() is used to insert select query that will help to select particular user for login from Users table.
         private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
-            
-                SqlConnection SqlConn = new SqlConnection("Data Source = DESKTOP-QULTHGL\\SQLEXPRESS; Initial Catalog=VideoRentalDB; Integrated Security=True");
+
+            //Sql database connection used to select user from the database table for login
+            SqlConnection Conn = new SqlConnection("Data Source = DESKTOP-QULTHGL\\SQLEXPRESS; Initial Catalog=VideoRentalDB; Integrated Security=True");
 
                 try
 
                 {
 
-                SqlCommand SqlStr = new SqlCommand();
+                SqlCommand Cmdd = new SqlCommand();
 
                 SqlDataReader SqlReader;
 
-                string SqlStmt;
+                string Strr;
 
-                SqlStr.Connection = SqlConn;
+                Cmdd.Connection = Conn;
 
-                SqlStmt = "Select * from UserTable where UserName = '" +TxtUserName.Text + "' and Password = '" + TxtPassword.Text + "'";
+                Strr = "Select * from UserTable where UserName = '" +TxtUserName.Text + "' and Password = '" + TxtPassword.Text + "'";
 
-                SqlStr.CommandText = SqlStmt;
+                Cmdd.CommandText = Strr;
 
-                SqlConn.Open();
+                Conn.Open();
 
-                SqlReader = SqlStr.ExecuteReader();
+                SqlReader = Cmdd.ExecuteReader();
 
                 int count = 0;
 
@@ -61,9 +62,11 @@ namespace VideoRentalSystem
                     count++;                                         
                 }
 
+                 //if the username is match with sql database table then VideoRental form will be open .
+                 //after open next form the login foem will be closed.
                 if (count == 1)
                 {
-                   SqlConn.Close();
+                   Conn.Close();
                    (new VideoRental()).Show();
                    this.Close();
 
@@ -74,10 +77,10 @@ namespace VideoRentalSystem
                 else
 
                 {
+                    //if the username or password did not match to the stored data,this message will pop up.
+                    MessageBox.Show("Check Username or Password");
 
-                    MessageBox.Show("Check Username/Password");
-
-                    SqlConn.Close();
+                    Conn.Close();
 
                 }
 
@@ -89,7 +92,7 @@ namespace VideoRentalSystem
 
                 MessageBox.Show("Database Exception" + ex.Message);
 
-                SqlConn.Close();
+                Conn.Close();
 
             }
 
@@ -98,7 +101,7 @@ namespace VideoRentalSystem
 
 
         }
-
+        //Register_Button_Click() button will bring the registration form for the new user if he/she did not have account.
         private void Register_Button_Click(object sender, RoutedEventArgs e)
         {
             (new Registration()).Show();
