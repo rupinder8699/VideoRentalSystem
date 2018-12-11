@@ -68,6 +68,10 @@ namespace VideoRentalSystem
                 LastName_TxtBox.Text = "";
                 Address_TxtBox.Text = "";
                 Phone_TxtBox.Text = "";
+                MovieID_Txtbox.Text = "";
+                DateRented_Txtbox.Text = "";
+                DateReturned_Txtbox.Text = "";
+
             }
 
         }
@@ -82,21 +86,28 @@ namespace VideoRentalSystem
             Address_TxtBox.Text = "";
             Phone_TxtBox.Text = "";
             CustomerID_Txtbox.Text = "";
+            MovieID_Txtbox.Text = "";
+            DateRented_Txtbox.Text = "";
+            DateReturned_Txtbox.Text = "";
+
         }
 
         private void Delete_Cust_Btn_Click(object sender, RoutedEventArgs e)
         {
-
+            
             if (MessageBox.Show("Are you sure you want to delete the User?", "User", MessageBoxButton.YesNo).ToString() == "Yes")
             {
-                Obj_data.Delete_cust(CustID);
-                MessageBox.Show("User Deleted");
+               Obj_data.Delete_cust(CustID);
                 CustomerData.ItemsSource = Obj_data.CustData().DefaultView;
                 FirstName_TxtBox.Text = "";
                 LastName_TxtBox.Text = "";
                 Address_TxtBox.Text = "";
                 Phone_TxtBox.Text = "";
                 CustomerID_Txtbox.Text = "";
+                MovieID_Txtbox.Text = "";
+                DateRented_Txtbox.Text = "";
+                DateReturned_Txtbox.Text = "";
+
             }
 
         }
@@ -139,6 +150,9 @@ namespace VideoRentalSystem
                 Copies_TxtBox.Text = "";
                 Plot_TxtBox.Text = "";
                 Genre_TxtBox.Text = "";
+                CustomerID_Txtbox.Text = "";
+                DateRented_Txtbox.Text = "";
+                DateReturned_Txtbox.Text = "";
 
             }
         }
@@ -155,6 +169,10 @@ namespace VideoRentalSystem
             Plot_TxtBox.Text = "";
             Genre_TxtBox.Text = "";
             MovieID_Txtbox.Text = "";
+            CustomerID_Txtbox.Text = "";
+            DateRented_Txtbox.Text = "";
+            DateReturned_Txtbox.Text = "";
+
         }
 
         private void Delete_Movie_Btn_Click(object sender, RoutedEventArgs e)
@@ -162,7 +180,6 @@ namespace VideoRentalSystem
             if (MessageBox.Show("Are you sure you want to delete the Movie?", "User", MessageBoxButton.YesNo).ToString() == "Yes")
             {
                 Obj_data.Delete_movi(MovieID);
-                MessageBox.Show("Movie Deleted");
                 VideoData.ItemsSource = Obj_data.MoviData().DefaultView;
                 Rating_TxtBox.Text = "";
                 Title_TxtBox.Text = "";
@@ -171,6 +188,9 @@ namespace VideoRentalSystem
                 Plot_TxtBox.Text = "";
                 Genre_TxtBox.Text = "";
                 MovieID_Txtbox.Text = "";
+                CustomerID_Txtbox.Text = "";
+                DateRented_Txtbox.Text = "";
+                DateReturned_Txtbox.Text = "";
 
             }
 
@@ -205,8 +225,6 @@ namespace VideoRentalSystem
                     RentalData.ItemsSource = Obj_data.RentData().DefaultView;
                     VideoData.ItemsSource = Obj_data.MoviData().DefaultView;
                     CustomerData.ItemsSource = Obj_data.CustData().DefaultView;
-                    MovieID_Txtbox.Text = "";
-                    CustomerID_Txtbox.Text = "";
                     Rating_TxtBox.Text = "";
                     Title_TxtBox.Text = "";
                     Year_TxtBox.Text = "";
@@ -217,6 +235,9 @@ namespace VideoRentalSystem
                     LastName_TxtBox.Text = "";
                     Address_TxtBox.Text = "";
                     Phone_TxtBox.Text = "";
+                    CustomerID_Txtbox.Text = "";
+                    MovieID_Txtbox.Text = "";
+                    DateRented_Txtbox.Text = "";
                     DateReturned_Txtbox.Text = "";                                  
                 }
             }
@@ -245,28 +266,30 @@ namespace VideoRentalSystem
             Address_TxtBox.Text = "";
             Phone_TxtBox.Text = "";
             DateReturned_Txtbox.Text = "";
+            DateRented_Txtbox.Text = "";
+            
         }
 
 
         private void Back_Btn_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
-            base.Close();
+            this.Close();
         }
 
         private void TopMovie_Btn_Click(object sender, RoutedEventArgs e)
         {
-
+            Obj_data.Top_Movie();
         }
 
         private void BestBuyer_Btn_Click(object sender, RoutedEventArgs e)
         {
-
+            Obj_data.Best_Buyer();
         }
 
         private void Exit_Btn_Click(object sender, RoutedEventArgs e)
         {
-            base.Close();
+            this.Close();
 
         }
 

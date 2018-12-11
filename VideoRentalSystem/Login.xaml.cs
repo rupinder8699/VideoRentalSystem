@@ -64,11 +64,8 @@ namespace VideoRentalSystem
                 if (count == 1)
                 {
                    SqlConn.Close();
-                    MessageBox.Show("Successful");
-
-                    VideoRental w = new VideoRental();
-                    w.ShowDialog();
-                    this.Close();
+                   (new VideoRental()).Show();
+                   this.Close();
 
                 }
 

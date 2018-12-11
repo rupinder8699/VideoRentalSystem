@@ -103,12 +103,29 @@ namespace VideoRentalSystem
             {
                 Cmdd.Parameters.Clear();
                 Cmdd.Connection = this.Conn;
-                Strr = "Delete from Customer where CustID like @CustID";
+
+
+                //first of the all select the record from the Rented Movie is he already has a movie on rent or not if he has a movie on rent then he can't be able to delete the record from the table
+                String Strr = "";
+                Strr = "select Count(*) from RentalMovies where CustIDFK= @CustID and DateReturned ='1900-01-01' ";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@CustID", CustID) };
                 Cmdd.Parameters.Add(parameterArray[0]);
+
                 Cmdd.CommandText = Strr;
                 Conn.Open();
-                Cmdd.ExecuteNonQuery();
+                int count = Convert.ToInt32(Cmdd.ExecuteScalar());
+                if (count == 0)
+                {
+                    Strr = "Delete from Customer where CustID like @CustID";
+                    Cmdd.CommandText = Strr;
+                    Cmdd.ExecuteNonQuery();
+                    MessageBox.Show("User Deleted");
+                }
+                else
+                {
+                    //display the message if he has a movie on rent 
+                    MessageBox.Show("Customer has rented the movie. First take the movie back than you can delete the customer");
+                }
             }
             catch (Exception exception)
             {
@@ -210,7 +227,7 @@ namespace VideoRentalSystem
                 Cmdd.Parameters.Clear();
                 Cmdd.Connection = Conn;
                 Strr = "Update Movies Set Rating= @Rating,Title = @Title, Year = @Year,Rental_Cost = @Rental_Cost,Copies= @Copies,Plot = @Plot, Genre = @Genre where MovieID = @MovieID";
-                Cmdd.Parameters.AddWithValue("@Rental_Cost", Rental_Cost);
+               
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieID", MovieID), new SqlParameter("@Rating", Rating), new SqlParameter("@Title", Title), new SqlParameter("@Year", Year), new SqlParameter("@Rental_Cost", Rental_Cost), new SqlParameter("@Copies", Copies), new SqlParameter("@Plot", Plot), new SqlParameter("@Genre", Genre) };
                 Cmdd.Parameters.Add(parameterArray[0]);
                 Cmdd.Parameters.Add(parameterArray[1]);
@@ -244,12 +261,30 @@ namespace VideoRentalSystem
             {
                 Cmdd.Parameters.Clear();
                 Cmdd.Connection = this.Conn;
-                Strr = "Delete from Movies where MovieID like @MovieID";
+
+
+                //first of the all select the record from the Rented Movie is he already has a movie on rent or not if he has a movie on rent then he can't be able to delete the record from the table
+                String Strr = "";
+                Strr = "select Count(*) from RentalMovies where MovieIDFK= @MovieID and DateReturned ='1900-01-01' ";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieID", MovieID) };
                 Cmdd.Parameters.Add(parameterArray[0]);
+
                 Cmdd.CommandText = Strr;
                 Conn.Open();
-                Cmdd.ExecuteNonQuery();
+                int count = Convert.ToInt32(Cmdd.ExecuteScalar());
+                if (count == 0)
+                {
+                    Strr = "Delete from Movies where MovieID like @MovieID";
+                     Cmdd.CommandText = Strr;
+                    Cmdd.ExecuteNonQuery();
+                    MessageBox.Show("Movie Deleted");
+                }
+                else
+                {
+                    //display the message if he has a movie on rent 
+                    MessageBox.Show("Customer has rented the movie. First take the movie back than you can delete the movie");
+                }
+
             }
             catch (Exception exception)
             {
@@ -291,15 +326,107 @@ namespace VideoRentalSystem
             }
         }
 
+        public void Top_Movie()
+        {
+            int Top_MovieID = 0, Max_number = 0, Total_Movies = 0;
+            string Strr = "";
+            try
+            {
+                Cmdd.Parameters.Clear();
+                Cmdd.Connection = Conn;
+                string Strr1 = "Select IDENT_CURRENT('Movies')";
+                
+                Cmdd.CommandText = Strr1;
+                Conn.Open();
+                Total_Movies = Convert.ToInt32(Cmdd.ExecuteScalar());
+
+                for(int i = 1; i<= Total_Movies; i++)
+                {
+                    
+                    Strr = "select Count(*) from RentalMovies where MovieIDFK= '" + i + "'";
+                   
+
+                    Cmdd.CommandText = Strr;
+                    int count = Convert.ToInt32(Cmdd.ExecuteScalar());
+                      if (count > Max_number)
+                    {
+                        Max_number = count;
+                        Top_MovieID = i;
+                    }
+                }
+                this.Strr = "Select Title from Movies where MovieID ='" + Top_MovieID + "'";
+                this.Cmdd.CommandText = this.Strr;
+                String Title = Convert.ToString(Cmdd.ExecuteScalar());
+                MessageBox.Show(Title + " (Movie ID "+ Top_MovieID + " ) is maximum rented movie with " + Max_number + " times");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Database Exception " + exception.Message);
+            }
+            finally
+            {
+                if (Conn != null)
+                {
+                    Conn.Close();
+                }
+            }
+
+        }
+
+        public void Best_Buyer()
+        {
+            int Best_BuyerID = 0, Max_number = 0, Total_Customer = 0;
+            string Strr = "";
+            try
+            {
+                Cmdd.Parameters.Clear();
+                Cmdd.Connection = Conn;
+                string Strr1 = "Select IDENT_CURRENT('Customer')";
+
+                Cmdd.CommandText = Strr1;
+                Conn.Open();
+                Total_Customer = Convert.ToInt32(Cmdd.ExecuteScalar());
+
+                for (int i = 1; i <= Total_Customer; i++)
+                {
+
+                    Strr = "select Count(*) from RentalMovies where CustIDFK= '" + i + "'";
+
+
+                    Cmdd.CommandText = Strr;
+                    int count = Convert.ToInt32(Cmdd.ExecuteScalar());
+                    if (count > Max_number)
+                    {
+                        Max_number = count;
+                        Best_BuyerID = i;
+                    }
+                }
+                this.Strr = "Select FirstName from Customer where CustID ='" + Best_BuyerID + "'";
+                this.Cmdd.CommandText = this.Strr;
+                String FirstName = Convert.ToString(Cmdd.ExecuteScalar());
+                MessageBox.Show(FirstName + " (Cust ID " + Best_BuyerID + " ) is maximum movie buyer with " + Max_number + " times");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Database Exception " + exception.Message);
+            }
+            finally
+            {
+                if (Conn != null)
+                {
+                    Conn.Close();
+                }
+            }
+
+        }
+
         public void Issue_Movi(int MovieID, int CustID, DateTime DateRent, int Copies)
         {
-            
-
             try
             {
                 this.Cmdd.Parameters.Clear();
                 this.Cmdd.Connection = this.Conn;
-                this.Strr = "Insert into RentalMovies(MovieIDFK, CustIDFK, DateRented) Values(@MovieIDFK, @CustIDFK, @DateRented)";
+                this.Strr = "Insert into RentalMovies(MovieIDFK, CustIDFK, DateRented, DateReturned) Values(@MovieIDFK, @CustIDFK, @DateRented,'1900-01-01')";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieIDFK", MovieID), new SqlParameter("@CustIDFK", CustID), new SqlParameter("@DateRented",DateRent)};
                 this.Cmdd.Parameters.Add(parameterArray[0]);
                 this.Cmdd.Parameters.Add(parameterArray[1]);

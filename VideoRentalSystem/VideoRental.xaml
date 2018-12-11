@@ -16,7 +16,7 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <Grid Background="#FF78776D" Margin="0,0,0,-3">
-                    <DataGrid Name="CustomerData" HorizontalAlignment="Left" Height="160" VerticalAlignment="Top" Width="364" FontSize="12" FontFamily="Times New Roman" MouseDoubleClick="SelectCustDataRow" />
+                    <DataGrid Name="CustomerData" HorizontalAlignment="Left" AlternatingRowBackground="Azure" RowBackground="Beige" Height="160" VerticalAlignment="Top" Width="364" FontSize="12" FontFamily="Times New Roman" MouseDoubleClick="SelectCustDataRow" />
                 </Grid>
             </TabItem>
 
@@ -28,7 +28,7 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <Grid Background="#FF9EA69E">
-                    <DataGrid Name="VideoData" HorizontalAlignment="Left" Height="157" VerticalAlignment="Top" Width="364"  FontSize="12" FontFamily="Times New Roman" MouseDoubleClick="SelectMoviDataRow" ScrollViewer.CanContentScroll="True" />
+                    <DataGrid Name="VideoData" HorizontalAlignment="Left" AlternatingRowBackground="Azure" RowBackground="Beige" Height="157" VerticalAlignment="Top" Width="364"  FontSize="12" FontFamily="Times New Roman" MouseDoubleClick="SelectMoviDataRow" ScrollViewer.CanContentScroll="True" />
                 </Grid>
             </TabItem>
 
@@ -41,7 +41,7 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <Grid Background="#FFB0AFA8" Margin="0,0,0,0">
-                    <DataGrid Name="RentalData" HorizontalAlignment="Left" Height="157" VerticalAlignment="Top" Width="364"  FontFamily="Times New Roman" MouseDoubleClick="SelectRentDataRow" FontSize="12"  />
+                    <DataGrid Name="RentalData" HorizontalAlignment="Left" Height="157" AlternatingRowBackground="Azure" RowBackground="Beige" VerticalAlignment="Top" Width="364"  FontFamily="Times New Roman" MouseDoubleClick="SelectRentDataRow" FontSize="12"  />
                 </Grid>
             </TabItem>
 
@@ -105,6 +105,8 @@
         <Button x:Name="Back_Btn" Content="Back" HorizontalAlignment="Left" Margin="30,520,0,0" VerticalAlignment="Top" Width="60" Height="30" Background="#FFF3800D" FontSize="18" Click="Back_Btn_Click"/>
         <Button x:Name="Exit_Btn" Content="Exit" HorizontalAlignment="Left" Margin="896,526,0,0" VerticalAlignment="Top" Width="60" Background="#FFF9230E" Height="30" FontSize="18" Click="Exit_Btn_Click"/>
 
+
+       
         <Button x:Name="TopMovi_Btn" Content="Top Movie" HorizontalAlignment="Left" Margin="36,460,0,0" VerticalAlignment="Top" Width="102" Height="30" Background="#FF11E9F3" FontSize="18" Click="TopMovie_Btn_Click"/>
         <Button x:Name="Bestbyr_Btn" Content="Best Buyer" HorizontalAlignment="Left" Margin="287,460,0,0" VerticalAlignment="Top" Width="107" Height="30" FontSize="18" Click="BestBuyer_Btn_Click" Background="#FFECE21B"/>
 
