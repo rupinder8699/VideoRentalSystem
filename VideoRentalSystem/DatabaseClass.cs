@@ -16,6 +16,7 @@ namespace VideoRentalSystem
         private SqlDataReader SqlReader;
         private string Strr;
 
+        //DataTable CustData()
         public DataTable CustData()
         {
             DataTable table = new DataTable();
@@ -35,12 +36,14 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception" + exception.Message);
                 this.Conn.Close();
                 return null;
             }
         }
 
+        //Add_cust() method will add the customer data with using insert query in data table customer
         public void Add_cust(string FirstName_TextBox, string LastName_TextBox, string Address_TextBox, string Phone_TextBox)
         {
             this.Cmdd.Parameters.Clear();
@@ -48,6 +51,8 @@ namespace VideoRentalSystem
             {
                 this.Cmdd.Parameters.Clear();
                 this.Cmdd.Connection = this.Conn;
+
+                //here the insert query which will insert the customer data in the table
                 this.Strr = "Insert into Customer(FirstName,LastName,Address,Phone) Values(@FirstName, @LastName, @Address, @Phone)";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@FirstName", FirstName_TextBox), new SqlParameter("@LastName", LastName_TextBox), new SqlParameter("@Address", Address_TextBox), new SqlParameter("@Phone", Phone_TextBox) };
                 this.Cmdd.Parameters.Add(parameterArray[0]);
@@ -62,17 +67,21 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception" + exception.Message);
                 this.Conn.Close();
             }
         }
 
+        //Update_cust() will update the Custtomer data as well as also contain the query of rental_cost of the movies. 
         public void Update_cust(int CustID, string FirstName, string LastName, string Address, int Phone)
         {
             try
             {
                 Cmdd.Parameters.Clear();
                 Cmdd.Connection = Conn;
+               
+                //the update query update the changes in the customer table
                 Strr = "Update Customer Set FirstName= @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone where CustID = @CustID";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@CustID", CustID), new SqlParameter("@FirstName", FirstName), new SqlParameter("@LastName", LastName), new SqlParameter("@Address", Address), new SqlParameter("@Phone", Phone) };
                 Cmdd.Parameters.Add(parameterArray[0]);
@@ -87,6 +96,7 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception " + exception.Message);
             }
             finally
@@ -97,6 +107,8 @@ namespace VideoRentalSystem
                 }
             }
         }
+
+        //Delete_cust() this method will delete the customer from the customer data table   
         public void Delete_cust(int CustID)
         {
             try
@@ -129,6 +141,7 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception" + exception.Message);
             }
             finally
@@ -161,6 +174,7 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception" + exception.Message);
                 this.Conn.Close();
                 return null;
@@ -203,11 +217,14 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception" + exception.Message);
                 this.Conn.Close();
             }
         }
 
+
+        //Update_movi() will update the movie data as well as also contain the query of rental_cost of the movies. 
         public void Update_movi(int MovieID, string Rating, string Title, string Year, string Copies, string Plot, string Genre)
         {
             int Rental_Cost = 0;
@@ -245,6 +262,7 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception " + exception.Message);
             }
             finally
@@ -255,6 +273,8 @@ namespace VideoRentalSystem
                 }
             }
         }
+
+        //Delete_movi() this will help to delete the movie from the movies table,*but if the movie is on rent then user cannot delete that movie
         public void Delete_movi(int MovieID)
         {
             try
@@ -263,7 +283,7 @@ namespace VideoRentalSystem
                 Cmdd.Connection = this.Conn;
 
 
-                //first of the all select the record from the Rented Movie is he already has a movie on rent or not if he has a movie on rent then he can't be able to delete the record from the table
+                
                 String Strr = "";
                 Strr = "select Count(*) from RentalMovies where MovieIDFK= @MovieID and DateReturned ='1900-01-01' ";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieID", MovieID) };
@@ -288,6 +308,8 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception" + exception.Message);
             }
             finally
@@ -320,19 +342,23 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception " + exception.Message);
                 this.Conn.Close();
                 return null;
             }
         }
 
-
+        //Issue_Movi() instert query used to insert the movie issue data in RentalMovies table
         public void Issue_Movi(int MovieID, int CustID, DateTime DateRent, int Copies)
         {
             try
             {
                 this.Cmdd.Parameters.Clear();
                 this.Cmdd.Connection = this.Conn;
+
+                //if the datereturned row show  the 1900-01-01 that means movie issues successfully
+                //if datereturned row show 1900-01-01 date then the row is actually empty.
                 this.Strr = "Insert into RentalMovies(MovieIDFK, CustIDFK, DateRented, DateReturned) Values(@MovieIDFK, @CustIDFK, @DateRented,'1900-01-01')";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieIDFK", MovieID), new SqlParameter("@CustIDFK", CustID), new SqlParameter("@DateRented", DateRent) };
                 this.Cmdd.Parameters.Add(parameterArray[0]);
@@ -345,6 +371,7 @@ namespace VideoRentalSystem
                 this.Cmdd.ExecuteNonQuery();
                 this.Conn.Close();
 
+                //if the movie issued successfully then one movie will be detucted from the total copies
                 Strr = "Update Movies set Copies = Copies-1 where MovieID = @MovieIDFK";
                 this.Cmdd.CommandText = this.Strr;
 
@@ -355,13 +382,15 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception" + exception.Message);
                 this.Conn.Close();
             }
         }
 
 
-
+        //Return_Movi() method will select the cost of MovieID from movies table then the days will calculate with cost for per day 
         public void Return_Movi(int RMID, int MovieID, DateTime DateRent, DateTime DateReturned, int Copies)
         {
             try
@@ -411,6 +440,8 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception " + exception.Message);
             }
             finally
@@ -421,6 +452,8 @@ namespace VideoRentalSystem
                 }
             }
         }
+
+        //Top_Movie() method will find the highest rented movie from rental data ,from where it will count the maximum movieID number rented
 
         public void Top_Movie()
         {
@@ -438,7 +471,7 @@ namespace VideoRentalSystem
 
                 for (int i = 1; i <= Total_Movies; i++)
                 {
-
+                    //it will select the MovieIDFK from RentalMovies after count the maximum  number
                     Strr = "select Count(*) from RentalMovies where MovieIDFK= '" + i + "'";
 
 
@@ -450,6 +483,8 @@ namespace VideoRentalSystem
                         Top_MovieID = i;
                     }
                 }
+
+                //after counting the maximum number,here it will select movie name with the help of MovieID
                 this.Strr = "Select Title from Movies where MovieID ='" + Top_MovieID + "'";
                 this.Cmdd.CommandText = this.Strr;
                 String Title = Convert.ToString(Cmdd.ExecuteScalar());
@@ -457,6 +492,7 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception " + exception.Message);
             }
             finally
@@ -469,7 +505,7 @@ namespace VideoRentalSystem
 
         }
 
-        //Best_Buyer() method will find the maximum number of 
+        //Best_Buyer() method will find the highest movie rented customer from the rental data ,from where it will count the maximum number of CustID  
         public void Best_Buyer()
         {
             int Best_BuyerID = 0, Max_number = 0, Total_Customer = 0;
@@ -486,7 +522,7 @@ namespace VideoRentalSystem
 
                 for (int i = 1; i <= Total_Customer; i++)
                 {
-
+                    //it will select the CustIDFK from RentalMovies after count the maximum  number
                     Strr = "select Count(*) from RentalMovies where CustIDFK= '" + i + "'";
 
 
@@ -498,6 +534,7 @@ namespace VideoRentalSystem
                         Best_BuyerID = i;
                     }
                 }
+                //after counting the maximum number,here it will select customer name with the help of CustID
                 this.Strr = "Select FirstName from Customer where CustID ='" + Best_BuyerID + "'";
                 this.Cmdd.CommandText = this.Strr;
                 String FirstName = Convert.ToString(Cmdd.ExecuteScalar());
@@ -505,6 +542,7 @@ namespace VideoRentalSystem
             }
             catch (Exception exception)
             {
+                // if there is error this message will pop up.
                 MessageBox.Show("Database Exception " + exception.Message);
             }
             finally
@@ -515,6 +553,47 @@ namespace VideoRentalSystem
                 }
             }
 
+        }
+
+        public bool ReturnDateValue(int RMID)
+        {
+            try
+            {
+                Cmdd.Parameters.Clear();
+                Cmdd.Connection = Conn;
+                Strr = "Select * from RentalMovies where RMID = @RMID and DateReturned = '1900-01-01'";
+                Cmdd.Parameters.AddWithValue("@RMID", RMID);
+
+                Cmdd.CommandText = Strr;
+                Conn.Open();
+                SqlReader = Cmdd.ExecuteReader();
+
+                int count = 0;
+                while (SqlReader.Read())
+                {
+                    count++;
+                }
+               if (count == 1)
+                {
+                    Conn.Close();
+                    return true;
+                }
+               else
+                {
+                    Conn.Close();
+                    return false;
+                }
+                
+            }
+            catch (Exception exception)
+            {
+                
+                // if there is error this message will pop up.
+                MessageBox.Show("Database Exception " + exception.Message);
+                this.Conn.Close();
+                return false;
+
+            }
         }
 
     }

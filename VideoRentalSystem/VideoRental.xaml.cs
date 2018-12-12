@@ -223,14 +223,22 @@ namespace VideoRentalSystem
         //SelectRentDataRow() method used to select RentalMovies data in a datagrid by mouse double click in it,*for any update or delete it..
         private void SelectRentDataRow(object sender, MouseButtonEventArgs e)
         {
+             
             DataRowView view = (DataRowView)RentalData.SelectedItems[0];
             RMID = Convert.ToInt32(view["RMID"]);
-            MovieID = Convert.ToInt32(view["MovieIDFK"]);
-            MovieID_Txtbox.Text = Convert.ToString(view["MovieIDFK"]);
-            CustomerID_Txtbox.Text = Convert.ToString(view["CustIDFK"]);
-            DateRented_Txtbox.Text = Convert.ToString(view["DateRented"]);
-            DateReturned_Txtbox.Text = DateTime.Now.ToString("dd-MM-yyyy");
-           RentalData.ItemsSource = Obj_data.RentData().DefaultView;
+            if (Obj_data.ReturnDateValue(RMID) == true)
+            {
+                MovieID = Convert.ToInt32(view["MovieIDFK"]);
+                MovieID_Txtbox.Text = Convert.ToString(view["MovieIDFK"]);
+                CustomerID_Txtbox.Text = Convert.ToString(view["CustIDFK"]);
+                DateRented_Txtbox.Text = Convert.ToString(view["DateRented"]);
+                DateReturned_Txtbox.Text = DateTime.Now.ToString("dd-MM-yyyy");
+                RentalData.ItemsSource = Obj_data.RentData().DefaultView;
+            }
+            else
+            {
+                MessageBox.Show("Customer has already returned the movie");
+            }
         }
 
         //Issue_Rent_Btn_Click() used to issue the movie to the customer by choosing CustID and MovieID from the tables.
