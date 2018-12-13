@@ -7,15 +7,20 @@
         mc:Ignorable="d"
         Title="Registration" Height="600" Width="500">
     <Grid Margin="0,0,-8,1" RenderTransformOrigin="0.968,0.901">
-        <Label x:Name="UserName_label" Content="UserName" HorizontalAlignment="Left" Margin="50,75,0,0" VerticalAlignment="Top" Width="113" FontSize="22" Foreground="#FFF02C0D"/>
-        <Label x:Name="Password_label" Content="Password" HorizontalAlignment="Left" Margin="50,150,0,0" VerticalAlignment="Top" FontSize="22" Width="113" Foreground="#FF3DD311"/>
-        <Label x:Name="FullName_label" Content="Full Name" HorizontalAlignment="Left" Margin="50,216,0,0" VerticalAlignment="Top" Width="161" FontSize="22" RenderTransformOrigin="0.497,1.053" Height="35" Foreground="#FF1620E4"/>
-        <Label x:Name="Age_label" Content="Age" HorizontalAlignment="Left" Margin="65,286,0,0" VerticalAlignment="Top" FontSize="22" Width="76" Height="51" Foreground="#FF151512"/>
-        <TextBox x:Name="UserName_textbox" HorizontalAlignment="Left" Height="39" Margin="250,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" FontSize="22"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="250,150,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Password_textbox" HorizontalAlignment="Left" Height="39" Margin="250,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" FontSize="22"/>
-        <TextBox x:Name="Age_textbox" HorizontalAlignment="Left" Height="37" Margin="309,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" FontSize="22" RenderTransformOrigin="0.474,0.854"/>
-        <TextBox x:Name="FullName_textbox" HorizontalAlignment="Left" Height="35" Margin="250,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" FontSize="22"/>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="#FFEEB53C" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label x:Name="UserName_label" Content="UserName" HorizontalAlignment="Left" Margin="50,75,0,0" VerticalAlignment="Top" Width="113" FontSize="22" Foreground="#FFF02C0D" FontFamily="Sitka Heading"/>
+        <Label x:Name="Password_label" Content="Password" HorizontalAlignment="Left" Margin="50,150,0,0" VerticalAlignment="Top" FontSize="22" Width="113" Foreground="#FF3DD311" FontFamily="Sitka Heading"/>
+        <Label x:Name="FullName_label" Content="Full Name" HorizontalAlignment="Left" Margin="50,216,0,0" VerticalAlignment="Top" Width="161" FontSize="22" Foreground="#FF16E4E4" FontFamily="Sitka Heading"/>
+        <Label x:Name="Age_label" Content="Age" HorizontalAlignment="Left" Margin="65,286,0,0" VerticalAlignment="Top" FontSize="22" Width="76" Height="51" Foreground="#FF151512" FontFamily="Sitka Heading"/>
+        <TextBox x:Name="UserName_textbox" HorizontalAlignment="Left" Height="35" Margin="250,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" FontSize="22" FontFamily="Sitka Heading"/>
+        <TextBox x:Name="Password_textbox" HorizontalAlignment="Left" Height="35" Margin="250,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" FontSize="22" FontFamily="Sitka Heading"/>
+        <TextBox x:Name="Age_textbox" HorizontalAlignment="Left" Height="35" Margin="309,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" FontSize="22" RenderTransformOrigin="0.474,0.854"/>
+        <TextBox x:Name="FullName_textbox" HorizontalAlignment="Left" Height="35" Margin="250,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" FontSize="22" FontFamily="Sitka Heading"/>
         <Button x:Name="Submit_button" Content="Submit" HorizontalAlignment="Left" Margin="190,380,0,0" VerticalAlignment="Top" Width="94" Click="Submit_Button_Click" FontSize="22" Height="42" Background="#FFF30C0C" Foreground="#FFF9F4F4" FontFamily="Times New Roman"/>
         <Label x:Name="Header_label" Content="Register  For Login" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Width="354" FontSize="36" FontFamily="Times New Roman" Height="60" Foreground="#FF141BB0"/>
         <Label x:Name="Login_lbl" Content="Click for login" HorizontalAlignment="Left" Margin="90,478,0,0" VerticalAlignment="Top" Width="117" Foreground="#FF1313F3" FontSize="18" FontFamily="Sitka Heading" Height="43"/>

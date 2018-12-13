@@ -11,12 +11,13 @@ namespace VideoRentalSystem
 {
     class DatabaseClass
     {
+        // Sql database connection link used for storing data database.
         private SqlConnection Conn = new SqlConnection(@"Data Source=DESKTOP-QULTHGL\SQLEXPRESS;Initial Catalog=VideoRentalDB;Integrated Security=True");
         private SqlCommand Cmdd = new SqlCommand();
         private SqlDataReader SqlReader;
         private string Strr;
 
-        //DataTable CustData()
+        //DataTable CustData()method will select the movies table with select query
         public DataTable CustData()
         {
             DataTable table = new DataTable();
@@ -52,7 +53,7 @@ namespace VideoRentalSystem
                 this.Cmdd.Parameters.Clear();
                 this.Cmdd.Connection = this.Conn;
 
-                //here the insert query which will insert the customer data in the table
+                //the insert query will insert the customer data in the table
                 this.Strr = "Insert into Customer(FirstName,LastName,Address,Phone) Values(@FirstName, @LastName, @Address, @Phone)";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@FirstName", FirstName_TextBox), new SqlParameter("@LastName", LastName_TextBox), new SqlParameter("@Address", Address_TextBox), new SqlParameter("@Phone", Phone_TextBox) };
                 this.Cmdd.Parameters.Add(parameterArray[0]);
@@ -154,7 +155,7 @@ namespace VideoRentalSystem
         }
 
 
-
+        //DataTable MoviData() method will select the movies table with select query
         public DataTable MoviData()
         {
             DataTable table = new DataTable();
@@ -181,6 +182,7 @@ namespace VideoRentalSystem
             }
         }
 
+        // //Add_movi() method will store the movie data with help of insert query in data table movies
         public void Add_movi(string Rating_TextBox, string Title_TextBox, string Year_TextBox, string Copies_TextBox, string Plot_TextBox, string Genre_TextBox)
         {
             int Rental_Cost = 0;
@@ -200,6 +202,8 @@ namespace VideoRentalSystem
 
                 this.Cmdd.Parameters.Clear();
                 this.Cmdd.Connection = this.Conn;
+
+                //the insert query will insert the movie data in the table
                 this.Strr = "Insert into Movies(Rating,Title,Year,Rental_Cost,Copies,Plot,Genre) Values(@Rating, @Title, @Year, @Rental_Cost, @Copies, @Plot, @Genre)";
                 Cmdd.Parameters.AddWithValue("@Rental_Cost", Rental_Cost);
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@Rating", Rating_TextBox), new SqlParameter("@Title", Title_TextBox), new SqlParameter("@Year", Year_TextBox), new SqlParameter("@Copies", Copies_TextBox), new SqlParameter("@Plot", Plot_TextBox), new SqlParameter("@Genre", Genre_TextBox) };
@@ -224,7 +228,7 @@ namespace VideoRentalSystem
         }
 
 
-        //Update_movi() will update the movie data as well as also contain the query of rental_cost of the movies. 
+        //Update_movi() will update the movie data as well as also contain the query of rental_cost of the movies that will fix the cost of according to the year. 
         public void Update_movi(int MovieID, string Rating, string Title, string Year, string Copies, string Plot, string Genre)
         {
             int Rental_Cost = 0;
@@ -243,8 +247,9 @@ namespace VideoRentalSystem
                 }
                 Cmdd.Parameters.Clear();
                 Cmdd.Connection = Conn;
-                Strr = "Update Movies Set Rating= @Rating,Title = @Title, Year = @Year,Rental_Cost = @Rental_Cost,Copies= @Copies,Plot = @Plot, Genre = @Genre where MovieID = @MovieID";
 
+                //the update query update the changes in the movie table
+                Strr = "Update Movies Set Rating= @Rating,Title = @Title, Year = @Year,Rental_Cost = @Rental_Cost,Copies= @Copies,Plot = @Plot, Genre = @Genre where MovieID = @MovieID";
                 SqlParameter[] parameterArray = new SqlParameter[] { new SqlParameter("@MovieID", MovieID), new SqlParameter("@Rating", Rating), new SqlParameter("@Title", Title), new SqlParameter("@Year", Year), new SqlParameter("@Rental_Cost", Rental_Cost), new SqlParameter("@Copies", Copies), new SqlParameter("@Plot", Plot), new SqlParameter("@Genre", Genre) };
                 Cmdd.Parameters.Add(parameterArray[0]);
                 Cmdd.Parameters.Add(parameterArray[1]);
@@ -555,6 +560,8 @@ namespace VideoRentalSystem
 
         }
 
+        //ReturnDateValue() used to return the movie where the dateretuned value is 1900-01-01 
+        //1900-01-01 means that datereturned row is blank
         public bool ReturnDateValue(int RMID)
         {
             try

@@ -107,5 +107,10 @@ namespace VideoRentalSystem
             (new Registration()).Show();
             this.Close();
         }
+
+        private void TxtPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

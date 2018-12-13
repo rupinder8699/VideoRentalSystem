@@ -33,18 +33,19 @@ namespace VideoRentalSystem
         //this form will be closed after clicks ok button on pop up message.
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
         {
-           
+
             int age = Convert.ToInt32(Age_textbox.Text);
             Obj_Register.Regis(UserName_textbox.Text, Password_textbox.Text, FullName_textbox.Text, age);
             MessageBox.Show("User Registered Successful");
             MainWindow w = new MainWindow();
             w.ShowDialog();
             this.Close();
-           
-        }
 
-        //Login_Button_Click() brings the login form if user already have an account. 
-        private void Login_Button_Click(object sender, RoutedEventArgs e)
+        }
+    
+
+    //Login_Button_Click() brings the login form if user already have an account. 
+    private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
             (new Login()).Show();
             this.Close();

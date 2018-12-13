@@ -10,8 +10,8 @@ namespace VideoRentalSystem
 {
     public class Registration_class
     {
-        
-        // Sql database connection link used to showing right in database for storing data.
+
+        // Sql database connection link used for storing data database.
         SqlConnection Conn_Regis = new SqlConnection("Data Source=DESKTOP-QULTHGL\\SQLEXPRESS;Initial Catalog=VideoRentalDB;Integrated Security=True");
         SqlCommand Cmdd_Regis = new SqlCommand();
         String Strr_Regis;

@@ -237,6 +237,8 @@ namespace VideoRentalSystem
             }
             else
             {
+
+            //if customer has already returned the movie then this message will pop up
                 MessageBox.Show("Customer has already returned the movie");
             }
         }
