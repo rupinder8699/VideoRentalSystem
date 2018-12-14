@@ -103,7 +103,7 @@ namespace VideoRentalSystem
         private void Delete_Cust_Btn_Click(object sender, RoutedEventArgs e)
         {
             //before the Customer deleted,pop up message of yes or  no will be shown for the surity.
-            if (MessageBox.Show("Are you sure you want to delete the User?", "User", MessageBoxButton.YesNo).ToString() == "Yes")
+            if (MessageBox.Show("Are you sure you want to delete the Customer?", "User", MessageBoxButton.YesNo).ToString() == "Yes")
             {
                Obj_data.Delete_cust(CustID);
                 CustomerData.ItemsSource = Obj_data.CustData().DefaultView;
